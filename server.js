@@ -76,6 +76,8 @@ const express = require("express");
 const app = express();//app is like blueprint instance for server creation
 const db = require("./db");//add always to start
 
+require('dotenv').config();
+
 const bodyparser = require("body-parser");
 app.use(bodyparser.json());//stores in req.body
 
@@ -98,9 +100,9 @@ app.get('/', (req, res) => {
 //     res.send(paneer);
 // })
 
-
-
-app.listen(3000, () => {
+//take port from env or else use local 3000
+const PORT = process.env.PORT ||3000;
+app.listen(PORT, () => {
   console.log('Server is running on http://localhost:3000')
 });
 

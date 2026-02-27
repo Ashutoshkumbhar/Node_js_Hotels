@@ -4,13 +4,18 @@
 
 //npm install mongoose
 const mongoose = require("mongoose");
+
+require('dotenv').config();
 //connection step by step
 
 //define  mongodb connection url  :'mongodb://localhost:27017/mydatabase'
-const mongoURL = 'mongodb://localhost:27017/hotels'
+//online deployment url
+const mongoURL = process.env.MONGODB_URL;
+//const mongoURL = process.env.MONGODB_URL_Local;
+
 
 //set up mongodb connection
-mongoose.connect("mongodb://127.0.0.1:27017/node_tutorial")
+mongoose.connect(mongoURL)
     .then(() => console.log("MongoDB Connected"))
     .catch((err) => console.log("MongoDB Connection Error", err));
 
@@ -33,3 +38,8 @@ db.on('disconnected',()=>{
 module.exports = db;
 
 //then what are models:blueprint structure like mysql and schemas: blueprint to define structure and data types
+
+
+//online db connected 
+//Now dteenv for security like password do niot go on github
+//manage config variables sensitive info etc
